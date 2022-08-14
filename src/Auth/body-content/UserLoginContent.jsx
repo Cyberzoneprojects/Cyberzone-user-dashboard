@@ -10,7 +10,9 @@ import { useNavigate } from "react-router-dom";
 import {validateRegistration} from '../../utils/inputValidations'
 import { useSelector, useDispatch } from 'react-redux'
 import { login, reset } from '../../redux/auth/authSlice'
-import ParticlesBackground from '../../Auth/body-content/ParticlesBackground'
+import ParticlesBackground from "./ParticlesBackground";
+import {ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function UserLoginContent(){
@@ -22,16 +24,21 @@ function UserLoginContent(){
     
 
     const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
-
+    // navigate(0)
     useEffect(()=>{
         if (isError) {
-            alert(message)
+            // alert(message)
+            toast.error(message)
           }
       
-          if (isSuccess || user) {
-            navigate('/')
-          }
-      
+          if (isSuccess) {
+            if(user.isAdmin){
+                navigate('/admindashboard')
+            }else{
+                navigate('/home')
+            }
+            
+          }  
           dispatch(reset())
     }, 
     [user, isError, isLoading, message, isSuccess, navigate, dispatch]
@@ -53,16 +60,14 @@ function UserLoginContent(){
     }
 
   useEffect(() => {
-      Aos.init({ duration: 3000 });
+      Aos.init({ duration: 1000 });
   }, []);
+
 
     return(
         <>
              <ParticlesBackground/>
              <main className="login" id="particles-js">
-                 <video autoPlay loop muted width="1350">
-                 {/* <source src={BackgroundVideo} type="video/mp4"/> */}
-                 </video>
                  <div className="LoginCard">
                     <div className="container-fluid">
                         <div className="row">
@@ -104,7 +109,11 @@ function UserLoginContent(){
                         </div>
                     </div>
                  </div>
+                 <div>
+        <ToastContainer />
+      </div>
              </main>
+
 
 
              {/* <script src="./particles/particles"></script>

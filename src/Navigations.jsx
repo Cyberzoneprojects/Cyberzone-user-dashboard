@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useSearchParams } from 'react-router-dom';
 
 import HomePage from './ClientsDashboard/pages/HomePage'
 import MyProfile from './ClientsDashboard/pages/MyProfile'
@@ -65,6 +65,8 @@ import UnitsClientsPage from './ClientsDashboard/pages/UnitsPage'
 import AddQuestionPage from './AdminDashboard/pages/AddQuestionPage'
 import ClientsServicesPage from './CyberzoneWebsite/pages/ClientsServicesPage';
 import UnitStructures from './AdminDashboard/pages/structures';
+import EditQuestionPage from './AdminDashboard/pages/EditQuestionPage';
+import EditUnitHomePage from './AdminDashboard/pages/EditUnitHomePage';
 
 
 
@@ -74,6 +76,7 @@ import SubscribeForService from './ClientsDashboard/pages/SubscribeForService'
 import PaymentForm from './ClientsDashboard/pages/PaymentForm';
 /*========================= main site pages =======================*/
 import SiteHomePage from './CyberzoneWebsite/pages/SiteHomePage';
+import Test from './test';
 
 
 function Navigation() {
@@ -81,7 +84,7 @@ function Navigation() {
         <BrowserRouter>
             <Routes>
                  <Route path='/clientservicedashboard' exact element={<HomePage/>}/>
-                 <Route path='/' exact element={<ClientsServicesPage/>}/>
+                 <Route path='/home' exact element={<ClientsServicesPage/>}/>
                  <Route path='/profile' exact element={<MyProfile/>}/>
                  <Route path='/res' exact element={<ResourcePage/>}/>
                  <Route path='/attest' exact element={<AttestationPage/>}/>
@@ -112,7 +115,7 @@ function Navigation() {
 
 
                  {/*============================= User Authentication =============================*/}
-                <Route path='/login' exact element={<UserLoginPage />}/>
+                <Route path='/' exact element={<UserLoginPage />}/>
                 <Route path='/forgotpassword' exact element={<UserForgotPasswordPage />}/>
                 <Route path='/checkemail' exact element={<UserCheckEmailPage />}/>
                 <Route path='/setuserpassword' exact element={<SetUserPasswordPage />}/>
@@ -121,6 +124,8 @@ function Navigation() {
                 <Route path='/adminregister' exact element={<AdminRegistrationPage/>}/>
                 <Route path='/adminlogin' exact element={<AdminLoginContent/>}/>
                 <Route path='/adminforgotpassword' exact element={<AdminForgotPasswordPage/>}/>
+                <Route path='/password-reset/:id/:token' element={<Test/>}/>
+                
 
 
 
@@ -148,7 +153,9 @@ function Navigation() {
                  <Route path='/editclient' exact element={<EditClientPage/>}/>
                  <Route path='/addservice' exact element={<AddServicePage/>}/>
                  <Route path='/addquestion' exact element={<AddQuestionPage/>}/>
+                 <Route path='/editquestion' exact element={<EditQuestionPage />}/>
                  <Route path='/unit-structures' exact element = {<UnitStructures/>}/>
+                 <Route path='/editunithome' exact element = {<EditUnitHomePage/>}/>
 
                  {/* main site home page */}
                  <Route path='/mainhomepage' exact element={<SiteHomePage/>}/>

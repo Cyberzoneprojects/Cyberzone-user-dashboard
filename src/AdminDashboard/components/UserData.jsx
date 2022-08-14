@@ -1,7 +1,13 @@
+import axios from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {API} from '../../config'
 function Modules(props){
-
+    const deleteUser = ()=>{
+        axios.delete(`${API}/users/${props.id}/delete`).then(()=>{
+            window.location.reload()
+        })
+    }
     return(
         <>
              {/*-- Modal =====*/}
@@ -52,17 +58,17 @@ function Modules(props){
              </div>
 
             <tr>
-                 <td>{props.firstName} {props.lastName}KONGBI ZION</td>
-                 <td>{props.gender}Male</td>
-                 <td>{props.country}Cameroon</td>
-                 <td>{props.phone}683411382</td>
-                 <td>{props.email}kongbizion3@gmail.com</td>
+                 <td>{props.firstName} {props.lastName}</td>
+                 <td>{props.gender}</td>
+                 <td>{props.country}</td>
+                 <td>{props.phone}</td>
+                 <td>{props.email}</td>
                  <td><button className="b pd-setting btn-info" disabled="true">Active</button></td>
                  <td><Link to='/specificclient' style={{textDecoration:'none'}}><button className="b pd-setting btn-info">View</button></Link></td>
                  <td>
-                     <Link to='/editclient'><button className="pd-setting-ed"><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button></Link>
+                     <Link to='/editclient' state={props}><button className="pd-setting-ed"><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button></Link>
                      <button className="pd-setting-ed" data-toggle="modal" data-target="#bl"><i className="fa fa-stop-circle-o" aria-hidden="true"></i></button>
-                     <button className="pd-setting-ed" data-toggle="modal" data-target="#del"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
+                     <button onClick={deleteUser} className="pd-setting-ed" data-toggle="modal" data-target="#del"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
                  </td>
             </tr>
         </>

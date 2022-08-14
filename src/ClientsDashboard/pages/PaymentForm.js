@@ -18,8 +18,8 @@ function PaymentForm(props) {
         textAlign: "left",
         display:"flex",
         justifyContent: "space-around"
-        
     }
+
     const paymentMethod = useLocation().state.ptype
     const user = useLocation().state.user
     const id=user._id
@@ -65,7 +65,7 @@ function PaymentForm(props) {
                 paymentMethod == "momo"
                     ? <><div className="container">
                         <div className="" style={style}>
-                            <form className="form-signin text-center" onSubmit={handleSubmit}>
+                            <form className="form-signin text-center" onSubmit>
 
 
                                 <div class="form-label-group">
